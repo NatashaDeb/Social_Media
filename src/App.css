@@ -9,3 +9,11 @@
 .side-bar{
     min-height: 800px;
 }
+
+.post-card{
+    margin: 20px 50px;
+}
+
+.user{
+    margin-bottom: 5px;
+}

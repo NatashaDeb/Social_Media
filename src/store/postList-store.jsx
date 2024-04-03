@@ -1,7 +1,6 @@
 import { createContext, useReducer } from "react";
 
-
-const PostList = createContext(
+export const PostList = createContext(
      {//here just all the properties are declared initially
         postList: [],
         addPost: () =>{},
@@ -37,7 +36,9 @@ const PostListProvider = ({children}) => {
                                     }
                                ]
 
-    const[postList, dispatchPostList] = useReducer(postListReducer, DEFAULT_POST_LIST)
+    const[postList, dispatchPostList] = useReducer(postListReducer, DEFAULT_POST_LIST) 
+    //inital values assigned to postlist array is DEFAULT_POST_LIST 
+    //intial postList is passed here which will be updated and dispatched depending on action assigned to postListReducer()
 
     const addPost = () =>{
 
@@ -49,7 +50,7 @@ const PostListProvider = ({children}) => {
 
     return (
         <PostList.Provider value={ { //the object is passed in ContextProvider so that all children component can use them
-            postList: [], addPost , deletePost
+            postList, addPost , deletePost
         }
         }>
             {children}
