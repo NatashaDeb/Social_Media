@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 
-function SideBar(){
+function SideBar({selectedTab}){
     return(
         <>
             <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark side-bar" style={{width: "280px;"}}>
