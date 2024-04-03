@@ -11,16 +11,18 @@ import { useState } from 'react';
 
 function App() {
  
-  
+  const [selectedTab, setSelectedTab] = useState('Home');
 
   return (
     <>
     <div className='app-container'>
-      <SideBar selectedTab = {selectedTab}></SideBar>
+      <SideBar selectedTab = {selectedTab}
+               setSelectedTab = {setSelectedTab}></SideBar>
       <div className='content'>
         <Header></Header> 
-        <CreatePost></CreatePost>
-        <PostList></PostList>
+        {selectedTab == 'Home'? <PostList></PostList>: <CreatePost></CreatePost>}
+        {/* <CreatePost></CreatePost>
+        <PostList></PostList> */}
         <Footer></Footer>
       </div>
     </div>
