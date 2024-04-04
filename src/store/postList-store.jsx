@@ -12,12 +12,15 @@ export const PostList = createContext(
 const postListReducer = (currPostList, action) =>{ //reducer function
     
     let newPostList = currPostList;
-    console.log(newPostList)
+
     if(action.type === "DELETE_POST"){
        //baapreh.. dont put {} after (post)=> (why that i dont know yet) 
         newPostList = currPostList.filter((post)=> post.id !== action.payload.postId);
     }
-    console.log(newPostList)
+    else if(action.type === "ADD_POST"){
+        newPostList = [action.payload, ...currPostList]
+    }
+
     return newPostList;
 }
 
@@ -48,8 +51,21 @@ const PostListProvider = ({children}) => {
     //inital values assigned to postlist array is DEFAULT_POST_LIST 
     //intial postList is passed here which will be updated and dispatched depending on action assigned to postListReducer()
 
-    const addPost = () =>{
-       
+    const addPost = (userId, title, body, reactions, tags) =>{
+       //console.log(`${userId} ${title} ${body} ${reactions} ${tags}`)
+       dispatchPostList(
+        {
+            type: "ADD_POST",
+            payload: {
+                        id: Date.now(),
+                        title: title,
+                        body: body,
+                        reactions: reactions,
+                        userID: userId,
+                        tags: tags
+            }
+        }
+       )
     }
     
     const deletePost = (postId) =>{
