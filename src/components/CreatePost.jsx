@@ -16,9 +16,11 @@ function CreatePost (){
         event.preventDefault(); //dont submit the form 
         const currUser = userIDEle.current.value;
         const currTitle = postTitleEle.current.value;
-        const currBody = postTitleEle.current.value;
+        const currBody = postBodyEle.current.value;
         const currReactions = reactionsEle.current.value;
         const currTags = hashtagsEle.current.value.split(' ');
+
+        console.log(`${currUser}`);
 
         //making all the values blank once finished reading
         userIDEle.current.value = "";
@@ -27,8 +29,30 @@ function CreatePost (){
         reactionsEle.current.value ="";
         hashtagsEle.current.value ="";
 
-        addPost(currUser, currTitle, currBody, currReactions, currTags);
-    }
+
+        {/*Add post to we are doing in Dummy server
+           Just Take care enter only valid user ID which is there in server already
+           i,e from 1-100
+         */}
+         console.log("Sending Entered post to server")
+
+         fetch('https://dummyjson.com/posts/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    title: currTitle,
+                    body: currBody,
+                    reactions: currReactions,
+                    userId: currUser,
+                    tags: currTags
+                    /* other post data */
+                })
+                })
+                .then(res => res.json())
+                .then(post => addPost(post));
+
+        
+    };
 
     return(
         <form className="create-post" onSubmit={handleSubmit}>

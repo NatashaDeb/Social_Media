@@ -11,6 +11,9 @@ export const PostList = createContext(
 
 
 const postListReducer = (currPostList, action) =>{ //reducer function
+
+    console.log(currPostList);
+    console.log(action);
     
     let newPostList = currPostList;
 
@@ -20,6 +23,8 @@ const postListReducer = (currPostList, action) =>{ //reducer function
     }
     else if(action.type === "ADD_POST"){
         newPostList = [action.payload, ...currPostList]
+        console.log("postlist after adding")
+        console.log(newPostList)
     }
     else if(action.type === "ADD_INITIAL_POSTS"){
         newPostList = action.payload.posts;
@@ -48,19 +53,30 @@ const PostListProvider = ({children}) => {
         )
      }
 
-    const addPost = (userId, title, body, reactions, tags) =>{
-       //console.log(`${userId} ${title} ${body} ${reactions} ${tags}`)
+    // const addPost = (userId, title, body, reactions, tags) =>{
+    //    //console.log(`${userId} ${title} ${body} ${reactions} ${tags}`)
+    //    dispatchPostList(
+    //     {
+    //         type: "ADD_POST",
+    //         payload: {
+    //                     id: Date.now(),
+    //                     title: title,
+    //                     body: body,
+    //                     reactions: reactions,
+    //                     userID: userId,
+    //                     tags: tags
+    //         }
+    //     }
+    //    )
+    // }
+
+    const addPost = (post) =>{ //getting object of entire post 
+        console.log("Post recived at addPost")
+       console.log(post)
        dispatchPostList(
         {
             type: "ADD_POST",
-            payload: {
-                        id: Date.now(),
-                        title: title,
-                        body: body,
-                        reactions: reactions,
-                        userID: userId,
-                        tags: tags
-            }
+            payload : post,
         }
        )
     }

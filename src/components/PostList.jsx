@@ -19,7 +19,7 @@ function PostList(){
      once the app starts newly and after it runs once
        1st argument is a function that will run when app gets paints for 1st time
        2nd argument is [] i,e there are NO Dependency Variables therefore the app will never be repainted again */}
-    useEffect(() => {
+   /* useEffect(() => {
                         setFetching(true); //until promise is fullfilled fetching is set true
                         // and should be set false again once the fetching is done  
 
@@ -40,7 +40,8 @@ function PostList(){
                             controller.abort(); //if call is done already there shouldnt be any affect in re-render of <PostList />
                         }
                         
-                    } , []);
+                    } , []); */
+                    
                
        
     return(
