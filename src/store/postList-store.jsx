@@ -63,7 +63,6 @@ const PostListProvider = ({children}) => {
             .then(res => res.json())
             .then((data)=>{addInitialPost(data.posts)
                 setFetching(false);
-            //console.log("fetch returned");
             });
            // console.log("fetch ended")
 
