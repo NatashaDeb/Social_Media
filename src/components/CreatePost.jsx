@@ -1,10 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import { useContext, useRef } from "react";
 import {PostList} from "../store/postList-store";
+import { useNavigate } from "react-router-dom";
 
 function CreatePost (){
 
     const {addPost} = useContext(PostList);
+    const navigate = useNavigate();
 
     let userIDEle = useRef(); 
     let postTitleEle = useRef();
@@ -20,8 +22,6 @@ function CreatePost (){
         const currReactions = reactionsEle.current.value;
         const currTags = hashtagsEle.current.value.split(' ');
 
-        console.log(`${currUser}`);
-
         //making all the values blank once finished reading
         userIDEle.current.value = "";
         postTitleEle.current.value ="";
@@ -34,7 +34,7 @@ function CreatePost (){
            Just Take care enter only valid user ID which is there in server already
            i,e from 1-100
          */}
-         console.log("Sending Entered post to server")
+        // console.log("Sending Entered post to server")
 
          fetch('https://dummyjson.com/posts/add', {
                 method: 'POST',
@@ -50,8 +50,7 @@ function CreatePost (){
                 })
                 .then(res => res.json())
                 .then(post => addPost(post));
-
-        
+                 navigate("/")
     };
 
     return(

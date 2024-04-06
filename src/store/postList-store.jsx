@@ -57,15 +57,15 @@ const PostListProvider = ({children}) => {
             const controller = new AbortController; //for useEffect Hook cleanup
             const signal = controller.signal; //while fetching we need to pass it as 2nd argument in fetch function
 
-            console.log("fetch started")
-            console.log("PostList Component rendered")
+            //console.log("fetch started")
+            //console.log("PostList Component rendered")
             fetch('https://dummyjson.com/posts', {signal})
             .then(res => res.json())
             .then((data)=>{addInitialPost(data.posts)
                 setFetching(false);
-                console.log("fetch returned");
+            //console.log("fetch returned");
             });
-            console.log("fetch ended")
+           // console.log("fetch ended")
 
             return() =>{
                 controller.abort(); //if call is done already there shouldnt be any affect in re-render of <PostList />
